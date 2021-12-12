@@ -1,6 +1,6 @@
 import logo from './logo.svg';
 import './App.css';
-import GameCanvas from './components/GamePanel';
+import GamePanel from './components/GamePanel';
 import React from 'react';
 
 class App extends React.Component {
@@ -9,7 +9,7 @@ class App extends React.Component {
     return (
         <div className="App">
           <h1>Ping Pong</h1>
-          <GameCanvas />
+          <GamePanel />
         </div>
     );
   }
