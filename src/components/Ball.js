@@ -30,7 +30,7 @@ export default class Ball {
         this.y += this.speedY;
     }
 
-    collision(leftRacket, rightRacket) {
+    collision(leftRacket, rightRacket, leftGoalLine, rightGoalLine) {
 
         const padding_left = leftRacket.x + leftRacket.sizeX;
         const padding_right = rightRacket.x;
@@ -38,14 +38,27 @@ export default class Ball {
         const distance1 = Math.abs(this.x - padding_left) //ze wzoru na odleglosc punktu od prostej
         const distance2 = Math.abs(this.x - padding_right)
 
+        const distance_line_left = Math.abs(this.x - leftGoalLine.x - leftGoalLine.sizeX)
+        const distance_line_right = Math.abs(this.x - rightGoalLine.x)
+
         if (this.y < leftRacket.y + leftRacket.sizeY && this.y > leftRacket.y) {
             if (distance1 < this.size) {
                 this.speedX = -this.speedX
             }
         }
-        else if (this.y < rightRacket.y + rightRacket.sizeY && this.y > rightRacket.y){
+        if (this.y < rightRacket.y + rightRacket.sizeY && this.y > rightRacket.y){
             if(distance2 < this.size){
                 this.speedX = -this.speedX
+            }
+        }
+        if(this.y < leftGoalLine.y + leftGoalLine.sizeY && this.y > leftGoalLine.y){
+            if(distance_line_left < this.size){
+                console.log("goal-left")
+            }   
+        }
+        if(this.y < rightGoalLine.y + rightGoalLine.sizeY && this.y > rightGoalLine.y){
+            if(distance_line_right < this.size){
+                console.log("goal-right")
             }
         }
 

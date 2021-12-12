@@ -1,12 +1,12 @@
 export default class Racket{
-    constructor(ctx, x, y, speed)
+    constructor(ctx, x, y)
     {
         this.ctx = ctx;
         this.x = x;
         this.y = y;
         this.sizeX = null;
         this.sizeY = null;
-        this.speed = speed;
+        this.speed = null;
     }
 
     draw() {

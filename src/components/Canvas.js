@@ -3,6 +3,7 @@ import styles from './Canvas.module.css';
 import DottedNet from "./DottedNet";
 import Racket from "./Racket";
 import Ball from "./Ball";
+import GoalLine from "./GoalLine";
 
 export default class Canvas extends React.Component {
     constructor(props) {
@@ -22,6 +23,9 @@ export default class Canvas extends React.Component {
         this.moveRacketSpeed = 15;
 
         this.ball = null;
+
+        this.leftGoalLine = null;
+        this.rightGoalLine = null;
 
         this.dottedNet = [];
 
@@ -54,6 +58,7 @@ export default class Canvas extends React.Component {
 
 
     loop = () => {
+        //rysowanie planszy
         this.ctx.fillStyle = "white";
         this.ctx.fillRect(0, 0, this.width, this.height);
         this.ctx.globalCompositeOperation = "sourve-over";
@@ -61,17 +66,21 @@ export default class Canvas extends React.Component {
         this.ctx.strokeStyle = "black";
         this.ctx.strokeRect(0,0,this.width, this.height);
 
+        //rysowanie elementów
+        this.leftGoalLine.draw();
+        this.rightGoalLine.draw();
         this.leftRacket.draw();
         this.rightRacket.draw();
         this.dottedNet.map((dot) => dot.draw());
         this.ball.draw();
 
+        //aktualizacja elementów i sprawdzanie kolizji
+        this.ball.collision(this.leftRacket, this.rightRacket, this.leftGoalLine, this.rightGoalLine);
         this.leftRacket.update(this.height);
         this.rightRacket.update(this.height);
         this.ball.update(this.width, this.height);
-        this.ball.collision(this.leftRacket, this.rightRacket);
 
-        requestAnimationFrame(this.loop);
+        //requestAnimationFrame(this.loop);
         // this.leftRacket.draw();
     }
 
@@ -89,9 +98,11 @@ export default class Canvas extends React.Component {
         this.width = this.canvas.width;
         this.height = this.canvas.height;
 
-        this.leftRacket = new Racket(this.ctx, 15, this.height / 2 - 50, 0); // 1 = speed
-        this.rightRacket = new Racket(this.ctx, this.width - 30, this.height / 2 - 50, 0) //1 = speed
-        this.ball = new Ball(this.ctx, this.width / 2, this.height / 2, 12)
+        this.leftRacket = new Racket(this.ctx, 20, this.height / 2 - 50); 
+        this.rightRacket = new Racket(this.ctx, this.width - 35, this.height / 2 - 50) ;
+        this.ball = new Ball(this.ctx, this.width / 2, this.height / 2, 12);
+        this.leftGoalLine = new GoalLine(this.ctx, 0, this.height/2-150,3,300);
+        this.rightGoalLine = new GoalLine(this.ctx,this.width-3, this.height/2-150, 3, 300)
 
         this.generateNet();
 

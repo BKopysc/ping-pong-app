@@ -1,0 +1,28 @@
+.divCounter{
+    display: inline;
+}
+
+.divNav{
+    background-color: gray;
+    display: inline;
+}
+
+.counter1{
+float: left;
+}
+
+.counter2{
+    float:right;
+}
+
+.seperator{
+    float: none;
+}
+
+.pauseButton{
+    float:left;
+}
+
+.restartButton{
+    float:right;
+}
