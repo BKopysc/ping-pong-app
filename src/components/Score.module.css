@@ -1,0 +1,16 @@
+.scoreDiv{
+    max-width: 50px;
+    display: block;
+}
+
+.leftCounter, .rightCounter, .seperator{
+    font-size: 30px;
+}
+
+.leftCounter{
+    padding-right: 10px;
+}
+
+.rightCounter{
+    padding-left: 10px;
+}

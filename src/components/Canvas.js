@@ -28,7 +28,16 @@ export default class Canvas extends React.Component {
         this.rightGoalLine = null;
 
         this.dottedNet = [];
+        this.restaredBefore = false;
 
+    }
+
+    changeLeftScore = () => {
+        this.props.changeLeftScore()
+    }
+
+    changeRightScore = () => {
+        this.props.changeRightScore()
     }
 
 
@@ -48,7 +57,7 @@ export default class Canvas extends React.Component {
     }
 
     onKeyUpAction = (event) => {
-        if (event.key === "s" || event.key === "w"){
+        if (event.key === "s" || event.key === "w") {
             this.leftRacket.move(0);
         }
         if (event.key === "o" || event.key === "l") {
@@ -58,13 +67,23 @@ export default class Canvas extends React.Component {
 
 
     loop = () => {
+        // if(this.props.isRestart){
+        //     if(!this.restsaredBefore){
+        //         this.restaredBefore = !this.restaredBefore
+        //         this.setStartup()
+        //     }
+        // }
+        // else{
+        //     this.restaredBefore = false;
+        // }
         //rysowanie planszy
+        if (this.props.isRunning) {
         this.ctx.fillStyle = "white";
         this.ctx.fillRect(0, 0, this.width, this.height);
         this.ctx.globalCompositeOperation = "sourve-over";
         this.ctx.lineWidth = 5;
         this.ctx.strokeStyle = "black";
-        this.ctx.strokeRect(0,0,this.width, this.height);
+        this.ctx.strokeRect(0, 0, this.width, this.height);
 
         //rysowanie elementów
         this.leftGoalLine.draw();
@@ -79,9 +98,15 @@ export default class Canvas extends React.Component {
         this.leftRacket.update(this.height);
         this.rightRacket.update(this.height);
         this.ball.update(this.width, this.height);
+        }
+        else{
+            this.ctx.fillStyle = "rgba(255, 255, 255, 0.01)"
+            this.ctx.fillRect(0,0,this.width, this.height);
+        }
 
-        //requestAnimationFrame(this.loop);
-        // this.leftRacket.draw();
+        requestAnimationFrame(this.loop);
+
+
     }
 
     generateNet() {
@@ -93,24 +118,26 @@ export default class Canvas extends React.Component {
         console.log(this.dottedNet)
     }
 
-    componentDidMount() {
+    setStartup(){
         this.ctx = this.canvas.getContext("2d");
         this.width = this.canvas.width;
         this.height = this.canvas.height;
 
-        this.leftRacket = new Racket(this.ctx, 20, this.height / 2 - 50); 
-        this.rightRacket = new Racket(this.ctx, this.width - 35, this.height / 2 - 50) ;
-        this.ball = new Ball(this.ctx, this.width / 2, this.height / 2, 12);
-        this.leftGoalLine = new GoalLine(this.ctx, 0, this.height/2-150,3,300);
-        this.rightGoalLine = new GoalLine(this.ctx,this.width-3, this.height/2-150, 3, 300)
+        this.leftRacket = new Racket(this.ctx, 20, this.height / 2 - 50);
+        this.rightRacket = new Racket(this.ctx, this.width - 35, this.height / 2 - 50);
+        this.ball = new Ball(this.ctx, this.width / 2, this.height / 2, 12, 6, 0,this.changeLeftScore, this.changeRightScore);
+        this.leftGoalLine = new GoalLine(this.ctx, 0, this.height / 2 - 150, 3, 300);
+        this.rightGoalLine = new GoalLine(this.ctx, this.width - 3, this.height / 2 - 150, 3, 300)
 
         this.generateNet();
-
-        this.ball.addSpeed(7, 7)
 
         document.addEventListener("keydown", this.onKeyDownAction);
         document.addEventListener("keyup", this.onKeyUpAction);
         this.loop();
+    }
+
+    componentDidMount() {
+        this.setStartup();
     }
 
     render() {

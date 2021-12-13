@@ -7,10 +7,10 @@ class App extends React.Component {
 
   render() {
     return (
-        <div className="App">
-          <h1>Ping Pong</h1>
-          <GamePanel />
-        </div>
+      <div className="App">
+        <h1>Ping Pong</h1>
+        <GamePanel />
+      </div>
     );
   }
 }

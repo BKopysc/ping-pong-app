@@ -1,16 +1,42 @@
 export default class Ball {
-    constructor(ctx, x, y, size) {
+    constructor(ctx, x, y, size, speedX, speedY, scoreLeft, scoreRight) {
         this.ctx = ctx;
+        this.x0 = x;
+        this.y0 = y;
         this.x = x;
         this.y = y;
-        this.speedX = null;
-        this.speedY = null;
+        this.speedX = speedX;
+        this.speedY = speedY;
+        this.speedY0 = speedY;
         this.size = size;
+        this.scoreLeft = scoreLeft;
+        this.scoreRight = scoreRight;
+        //this.newRound = newRound;
+    }
+
+    defaultPosition(){
+        this.x = this.x0;
+        this.y = this.y0;
+        this.speedY = this.speedY0;
+        var randomBool = Math.random() < 0.5;
+        if(randomBool){
+            this.speedX = -this.speedX
+        }
+        else{
+            this.speedX = this.speedX
+        }
+    }
+
+    randomSpin(){
+        var min = Math.ceil(this.speedY-2);
+        var max = Math.floor(this.speedY+2);
+        this.speedY= Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
     addSpeed(speedX, speedY) {
         this.speedX = speedX;
         this.speedY = speedY;
+        this.speedY0 = speedY;
     }
     draw() {
         this.ctx.beginPath();
@@ -44,21 +70,25 @@ export default class Ball {
         if (this.y < leftRacket.y + leftRacket.sizeY && this.y > leftRacket.y) {
             if (distance1 < this.size) {
                 this.speedX = -this.speedX
+                this.randomSpin()
             }
         }
         if (this.y < rightRacket.y + rightRacket.sizeY && this.y > rightRacket.y){
             if(distance2 < this.size){
                 this.speedX = -this.speedX
+                this.randomSpin()
             }
         }
         if(this.y < leftGoalLine.y + leftGoalLine.sizeY && this.y > leftGoalLine.y){
             if(distance_line_left < this.size){
-                console.log("goal-left")
+                this.scoreLeft()
+                this.defaultPosition()
             }   
         }
         if(this.y < rightGoalLine.y + rightGoalLine.sizeY && this.y > rightGoalLine.y){
             if(distance_line_right < this.size){
-                console.log("goal-right")
+                this.scoreRight()
+                this.defaultPosition()
             }
         }
 
