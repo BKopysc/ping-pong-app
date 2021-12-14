@@ -10,6 +10,9 @@
     left:350px;
 }
 
+.pauseButtonHidden{
+    visibility: hidden;
+}
 .restartButton{
     position: inherit;
     width: 80px;

@@ -1,5 +1,5 @@
 import styles from "./Score.module.css";
-import Counter from "./Counter";
+import Counter from "../Counter/Counter";
 export default function Score(props){
     return(
         <div className={styles.scoreDiv}>

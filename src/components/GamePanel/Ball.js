@@ -81,13 +81,13 @@ export default class Ball {
         }
         if(this.y < leftGoalLine.y + leftGoalLine.sizeY && this.y > leftGoalLine.y){
             if(distance_line_left < this.size){
-                this.scoreLeft()
+                this.scoreRight()
                 this.defaultPosition()
             }   
         }
         if(this.y < rightGoalLine.y + rightGoalLine.sizeY && this.y > rightGoalLine.y){
             if(distance_line_right < this.size){
-                this.scoreRight()
+                this.scoreLeft()
                 this.defaultPosition()
             }
         }
