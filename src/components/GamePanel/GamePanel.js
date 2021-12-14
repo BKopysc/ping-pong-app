@@ -1,6 +1,5 @@
 import React from "react";
 import Canvas from "./Canvas/Canvas";
-import Counter from "./Counter/Counter";
 import styles from "./GamePanel.module.css"
 import Score from "./Score/Score";
 import Timer from "./Timer";
@@ -13,7 +12,6 @@ export default class GamePanel extends React.Component {
             scoreRight: 0,
             isEnd: false,
             isRunning: true,
-            pauseVisibility: true,
             winnerText: "none",
             pauseButtonText: ['Continue', 'Pause']
         };
@@ -56,7 +54,6 @@ export default class GamePanel extends React.Component {
 
 
     render() {
-        //this.state.pauseVisibility ? styles.pauseButton : styles.pauseButtonHidden
         return (
             <div>
                 <Timer

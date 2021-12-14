@@ -1,5 +1,4 @@
 import React, { useRef } from "react";
-import styles from './Canvas.module.css';
 import DottedNet from "../DottedNet";
 import Racket from "../Racket";
 import Ball from "../Ball";
@@ -144,8 +143,8 @@ export default class Canvas extends React.Component {
 
     render() {
         return (
-            <div className={styles.CanvasDiv}>
-                <canvas className={styles.Canvas} ref={this.setCanvasRef} width={640} height={400} />
+            <div>
+                <canvas ref={this.setCanvasRef} width={640} height={400} />
             </div>
         );
     }

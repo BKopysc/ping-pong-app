@@ -7,7 +7,7 @@
 .pauseButton{
     position: inherit;
     width: 80px;
-    left:350px;
+    left:370px;
 }
 
 .pauseButtonHidden{
@@ -16,7 +16,7 @@
 .restartButton{
     position: inherit;
     width: 80px;
-    right:344px;
+    right:370px;
 }
 
 .pauseButton, .restartButton{

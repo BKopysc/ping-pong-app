@@ -16,9 +16,6 @@ export default class Timer extends React.Component {
     calculateTime() {
         let new_minutes = (Math.floor(this.state.secondsLeft / 60)).toString();
         let new_seconds = (this.state.secondsLeft % 60).toString();
-        // if(new_seconds < 10){
-        //     new_seconds= new_seconds
-        // }
         this.setState({ timeLeft: [new_minutes, new_seconds] })
     }
 
