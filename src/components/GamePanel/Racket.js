@@ -27,7 +27,6 @@ export default class Racket {
     }
 
     update(height, currentPoint) {
-        // this.y + this.sizeY >= height && (this.speed = -this.speed);
         if (currentPoint === this.oldPoint) {
             if (this.y <= 0 && this.speed < 0) {
                 this.speed = 0;

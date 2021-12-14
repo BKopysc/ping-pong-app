@@ -11,7 +11,6 @@ export default class Ball {
         this.size = size;
         this.scoreLeft = scoreLeft;
         this.scoreRight = scoreRight;
-        //this.newRound = newRound;
     }
 
     defaultPosition(){
