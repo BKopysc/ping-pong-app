@@ -1,7 +1,10 @@
 # PingPong made in React with js
 
-## Application on `CodeSandbox`:
-https://codesandbox.io/s/ping-pong-app-jxzrop
+## Application on `Heroku`:
+https://react-pong.herokuapp.com
+
+
+![ping](https://github.com/BKopysc/ping-pong-app/blob/master/pingpong.png)
 
 &nbsp;
 &nbsp;
